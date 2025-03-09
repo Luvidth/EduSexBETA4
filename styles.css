@@ -24,6 +24,7 @@ body {
     background: linear-gradient(135deg, #a8e6cf, var(--color-secondary), var(--color-primary));
     background-size: 200% 200%;
     animation: gradientAnimation 10s ease infinite;
+    padding-bottom: 80px; /* Espacio para evitar que los botones se superpongan con el teclado */
 }
 
 @keyframes gradientAnimation {
@@ -104,11 +105,19 @@ body {
         max-width: none;
         bottom: 0;
         border-radius: 0;
+        flex-direction: row; /* Asegura que los botones estén en fila */
+        justify-content: space-between; /* Distribuye el espacio entre los botones */
     }
 
     .nav button {
-        flex: 1;
+        flex: 1; /* Hace que los botones ocupen el mismo espacio */
         padding: 15px;
+    }
+
+    body {
+        height: auto; /* Ajustar altura automáticamente */
+        padding: 20px; /* Padding para evitar que el contenido toque los bordes */
+        padding-bottom: 80px; /* Espacio adicional para el teclado */
     }
 }
 
@@ -258,7 +267,7 @@ body {
     }
 
     .nav {
-        flex-direction: column; /* Botones apilados verticalmente */
+        flex-direction: row; /* Botones en fila */
         align-items: center; /* Centrar botones */
         width: 100%; /* Ocupar todo el ancho */
         bottom: 0; /* Pegar al fondo */
@@ -266,91 +275,24 @@ body {
         background: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
         backdrop-filter: blur(10px); /* Efecto de desenfoque */
         border-radius: 0; /* Sin bordes redondeados */
-        }
-    
-        .nav button {
-            width: 90%; /* Botones más anchos */
-            margin-bottom: 5px; /* Espacio entre botones */
-        }
-    
-        /* Diseño predeterminado: los botones están apilados verticalmente */
-    .nav-buttons {
-        display: flex;
-        flex-direction: column; /* Apilados en pantallas grandes */
-        align-items: center;
-        gap: 10px;
     }
-    
-    /* En pantallas pequeñas (móviles), se apilan horizontalmente */
-    @media (max-width: 768px) {
-        .nav-buttons {
-            flex-direction: row; /* Se alinean en fila */
-            justify-content: center;
-        }
-    
-        .nav-buttons button {
-            flex: 1; /* Distribuye el espacio equitativamente */
-            min-width: auto;
-        }
+
+    .nav button {
+        width: 100%; /* Botones más anchos */
+        margin-bottom: 5px; /* Espacio entre botones */
     }
-    
-        body {
-            height: auto; /* Ajustar altura automáticamente */
-            padding: 20px; /* Padding para evitar que el contenido toque los bordes */
-        }
-    
-        .note-form {
-            flex-direction: column; /* Botones apilados verticalmente en móviles */
-        }
-    
-        .note-form button {
-            width: 100%; /* Botones ocupan todo el ancho en móviles */
-        }
+
+    body {
+        height: auto; /* Ajustar altura automáticamente */
+        padding: 20px; /* Padding para evitar que el contenido toque los bordes */
+        padding-bottom: 80px; /* Espacio adicional para el teclado */
     }
-    
-    /* Estilos para los botones "Agregar Nota" y "Borrar Nota" */
+
     .note-form {
-        margin-top: 20px;
-        display: flex; /* Alinear botones horizontalmente */
-        gap: 10px; /* Espacio entre los botones */
+        flex-direction: column; /* Botones apilados verticalmente en móviles */
     }
-    
-    .note-form textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid var(--color-border);
-        border-radius: 10px;
-        margin-bottom: 10px;
-        background: var(--color-background);
-        color: black;
-        backdrop-filter: blur(10px);
-    }
-    
+
     .note-form button {
-        padding: 10px 20px;
-        background: var(--color-background);
-        color: white;
-        border: 1px solid var(--color-primary);
-        border-radius: 10px;
-        cursor: pointer;
-        backdrop-filter: blur(10px);
-        transition: background 0.5s ease, transform 0.3s;
-        flex: 1; /* Hace que los botones ocupen el mismo espacio */
+        width: 100%; /* Botones ocupan todo el ancho en móviles */
     }
-    
-    .note-form button:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: scale(1.05);
-    }
-    
-    /* Media Queries para diseño responsivo */
-    @media (max-width: 768px) {
-        .note-form {
-            flex-direction: row; /* Botones alineados horizontalmente en móviles */
-        }
-    
-        .note-form button {
-            width: auto; /* Botones ocupan su tamaño natural en móviles */
-        }
-    }
-    
+}
