@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -193,9 +194,104 @@
         .confirmation-box button:hover {
             background-color: #0056b3;
         }
+
+        .info-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #007bff;
+    z-index: 1000;
+    background-color: white; /* Fondo blanco */
+    width: 40px; /* Tamaño del círculo */
+    height: 40px; /* Tamaño del círculo */
+    border-radius: 50%; /* Hace que sea un círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para resaltar */
+}
+
+.info-modal {
+    display: none;
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 250px;
+}
+
+.info-modal.active {
+    display: block;
+}
+
+.info-modal p {
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.info-modal p span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.info-modal p span.menstruation {
+    background-color: #ff6f69; /* Rojo para menstruación */
+}
+
+.info-modal p span.fertile {
+    background-color: #ffaaa5; /* Rosado para días fértiles */
+}
+
+.info-modal p span.infertile {
+    background-color: #a8e6cf; /* Aqua para días infértiles */
+}
+
+.info-modal button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.info-modal button:hover {
+    background-color: #0056b3;
+}
     </style>
 </head>
 <body onload="checkLoggedIn(); loadCalendar();">
+    <!-- Ícono de información -->
+<div class="info-icon" onclick="toggleInfoModal()">!</div>
+
+<!-- Modal de información -->
+<div class="info-modal" id="info-modal">
+    <h3>Colores del Calendario</h3>
+    <p>
+        <span class="menstruation"></span>
+        Días de menstruación (sangrado).
+    </p>
+    <p>
+        <span class="fertile"></span>
+        Días fértiles (posible ovulación).
+    </p>
+    <p>
+        <span class="infertile"></span>
+        Días infértiles (no fértiles).
+    </p>
+    <button onclick="toggleInfoModal()">Cerrar</button>
+</div>
     <div class="notification" id="notification"></div>
     <main>
         <section id="cuenta" class="content active">
@@ -268,6 +364,11 @@
     </nav>
     
     <script>
+        // Función para mostrar/ocultar el modal de información
+function toggleInfoModal() {
+    const modal = document.getElementById('info-modal');
+    modal.classList.toggle('active');
+}
         let selectedDate = null;
         let menstruationDate = null; // Fecha en la que se espera la siguiente nota
 
